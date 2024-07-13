@@ -420,7 +420,7 @@ func init() {
 		ctx.SendChain(message.Text("已改变全局默认启用状态: " + model.Args))
 	})
 
-	zero.OnCommandGroup([]string{"用法", "usage"}, zero.OnlyToMe).SetBlock(true).SecondPriority().
+	zero.OnCommandGroup([]string{"用法", "usage"}, zero.OnlyToMe, zero.AdminPermission).SetBlock(true).SecondPriority().
 		Handle(func(ctx *zero.Ctx) {
 			model := extension.CommandModel{}
 			_ = ctx.Parse(&model)
@@ -468,7 +468,7 @@ func init() {
 			}
 		})
 
-	zero.OnCommandGroup([]string{"服务列表", "service_list"}, zero.OnlyToMe).SetBlock(true).SecondPriority().
+	zero.OnCommandGroup([]string{"服务列表", "service_list"}, zero.OnlyToMe, zero.AdminPermission).SetBlock(true).SecondPriority().
 		Handle(func(ctx *zero.Ctx) {
 			gid := ctx.Event.GroupID
 			if gid == 0 {
